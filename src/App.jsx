@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Login from "./pages/Login";
+import Rendeles from "./pages/Rendeles";
+import Dashboard from "./pages/Dashboard";
+import NavbarMenu from "./components/NavbarMenu";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './App.css';
+
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <NavbarMenu />
+      <div style={{ paddingTop: '60px' }}> {/* Navbar miatt paddingTop */}
+        <Routes>
+          <Route path="/rendeles" element={<Rendeles />} />
+          <Route path="/login" element={<Login />} />
+          
+          <Route path="/dashboard" element={<Dashboard />} />
 
-export default App
+          <Route path="/" element={<Navigate to="/rendeles" />} />
+          <Route path="*" element={<Navigate to="/rendeles" />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
