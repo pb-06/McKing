@@ -1,4 +1,6 @@
 import { Container, Button, Card, Button, Row, Col } from 'react-bootstrap';
+import MenuItemCard from '../components/MenuItemCard';
+
 
 // menü elemei
 const menuItems = [
@@ -20,22 +22,11 @@ export default function Rendeles() {
             <h2 className="text-center mb-4">Új rendelés leadása</h2>
 
             {menuItems.map(item => (
-                <Card className="mb-3">
-                    <Card.Body>
-                        <Row className="align-items-center">
-                            <Col>
-                                <Card.Title>{item.name}</Card.Title>
-                            </Col>
-                            <Col xs="auto" className="d-flex align-items-center">
-                                <Button variant="danger">-</Button>
-                                <strong className="mx-3">
-                                    {quantity}
-                                </strong>
-                                <Button variant="success">+</Button>
-                            </Col>
-                        </Row>
-                    </Card.Body>
-                </Card>
+                <MenuItemCard
+                    key={item.id}
+                    item={item}
+                    quantity={order[item.id]}
+                />
             ))}
 
             <div className="d-grid mt-4">
