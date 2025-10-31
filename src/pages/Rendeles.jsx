@@ -1,4 +1,4 @@
-import { Container, Button, Card, Button, Row, Col } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import MenuItemCard from '../components/MenuItemCard';
 
 
@@ -25,7 +25,7 @@ export default function Rendeles() {
                 <MenuItemCard
                     key={item.id}
                     item={item}
-                    quantity={order[item.id]}
+                    quantity={defaultOrderState[item.id]}
                 />
             ))}
 
