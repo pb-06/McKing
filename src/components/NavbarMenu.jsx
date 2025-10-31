@@ -1,7 +1,7 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 
-export default function NavbarMenu() {
+export default function NavbarMenu({ loggedIn, onLogout }) {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top" className="shadow-sm">
       <Container>
@@ -10,11 +10,17 @@ export default function NavbarMenu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/rendeles">Rendelés</Nav.Link>
-            <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
+
+            {loggedIn && (
+              <Nav.Link as={NavLink} to="/dashboard">Dashboard</Nav.Link>
+            )}
           </Nav>
           <Nav>
-              <Button variant="outline-danger">Kijelentkezés</Button>
+            {loggedIn ? (
+              <Button variant="outline-danger" onClick={onLogout}>Kijelentkezés</Button>
+            ) : (
               <Button as={Link} to="/login" variant="outline-success">Bejelentkezés</Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
